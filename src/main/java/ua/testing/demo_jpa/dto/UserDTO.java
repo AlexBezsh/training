@@ -1,6 +1,8 @@
 package ua.testing.demo_jpa.dto;
 
 import lombok.*;
+import ua.testing.demo_jpa.entity.Role;
+import ua.testing.demo_jpa.entity.User;
 
 @Getter
 @Setter
@@ -9,6 +11,19 @@ import lombok.*;
 @Builder
 @ToString
 public class UserDTO {
+
+    private Role role;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String password;
+
+    public UserDTO(User user) {
+        this.role = user.getRole();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+    }
+
+    /*private String email;
+    private String password;*/
 }

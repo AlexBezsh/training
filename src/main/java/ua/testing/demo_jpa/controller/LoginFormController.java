@@ -1,16 +1,14 @@
 package ua.testing.demo_jpa.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ua.testing.demo_jpa.dto.UserDTO;
-import ua.testing.demo_jpa.dto.UsersDTO;
-import ua.testing.demo_jpa.entity.RoleType;
 import ua.testing.demo_jpa.entity.User;
 import ua.testing.demo_jpa.service.UserService;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -18,7 +16,6 @@ import ua.testing.demo_jpa.service.UserService;
 public class LoginFormController {
 
     private final UserService userService;
-    //private final Logger log = LoggerFactory.getLogger(LoginFormController.class);
 
     @Autowired
     public LoginFormController(UserService userService) {
@@ -26,22 +23,16 @@ public class LoginFormController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    //@RequestMapping(value = "login", method = RequestMethod.POST)
     @PostMapping(value = "login")
-    public void loginFormController(UserDTO user){
-        log.info("{}",userService.findByUserLogin(user));
-        log.info("{}", user);
-/*       userService.saveNewUser(User.builder()
-                .firstName("Ann")
-                .lastName("Reizer")
-                .email("AnnReizer@testing.ua")
-                .role(RoleType.ROLE_USER)
-                .build());*/
+    public void loginFormController(User user) {
+        log.info("User is logging in: {}", user);
+        userService.login(user);
     }
 
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public UsersDTO getAllUser(){
-        log.info("{}",userService.getAllUsers());
+    @RequestMapping(value = "users", method = RequestMethod.GET)
+    public List<UserDTO> getAllUsers() {
+        log.info("getting all users {}", userService.getAllUsers());
         return userService.getAllUsers();
     }
+
 }

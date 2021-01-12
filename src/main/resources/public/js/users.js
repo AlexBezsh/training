@@ -5,7 +5,7 @@ angular.module("users_form",[])
         $scope.getUsers = function(){
             $http({
                 method: "GET",
-                url: "/user",
+                url: "/users",
                 headers: { "Content-Type" : "application/json" }
             }).then(
                 function(data) {
