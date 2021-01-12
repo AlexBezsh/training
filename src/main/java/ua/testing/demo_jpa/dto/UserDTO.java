@@ -24,6 +24,4 @@ public class UserDTO {
         this.email = user.getEmail();
     }
 
-    /*private String email;
-    private String password;*/
 }

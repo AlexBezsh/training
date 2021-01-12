@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Builder
 @ToString
-
 @Entity
 @Table( name="user",
         uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
@@ -40,8 +39,8 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    /*@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+).{6,}",
+    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+).{6,}",
             message = "Password requirements: at least six characters, one digit, " +
-                    "one letter in lower case, one letter in upper case")*/
+                    "one letter in lower case, one letter in upper case")
     private String password;
 }
