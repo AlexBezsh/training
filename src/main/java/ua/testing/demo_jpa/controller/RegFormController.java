@@ -10,7 +10,6 @@ import ua.testing.demo_jpa.service.UserService;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api")
 public class RegFormController {
 
     private final UserService userService;
@@ -21,7 +20,7 @@ public class RegFormController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/reg_form")
+    @PostMapping(value = "/register")
     public void register(User user) {
         user.setRole(Role.USER);
         log.info("New user {}", user);

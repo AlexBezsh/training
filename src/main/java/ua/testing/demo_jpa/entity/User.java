@@ -14,11 +14,11 @@ import javax.validation.constraints.Size;
 @Builder
 @ToString
 @Entity
-@Table( name="user",
-        uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
+@Table(name = "user",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User {
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
 
