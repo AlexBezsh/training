@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ua.testing.demo_jpa.entity.User;
 import ua.testing.demo_jpa.service.UserService;
 
 @Slf4j
@@ -18,8 +19,9 @@ public class PageController {
         this.userService = userService;
     }
 
-    @GetMapping(value="/login")
-    public String loginPage() {
+    @GetMapping(value="/")
+    public String loginPage(Model model) {
+        model.addAttribute("user", new User());
         return "index";
     }
 
@@ -31,7 +33,8 @@ public class PageController {
     }
 
     @GetMapping("/register")
-    public String regForm(){
+    public String regForm(Model model){
+        model.addAttribute("user", new User());
         return "reg_form";
     }
 

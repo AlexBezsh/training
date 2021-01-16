@@ -2,30 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title th:text="#{users.title}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<h2 class="page-header">Users</h2>
-<table>
-    <thead>
+<div style="float: right;">
+    <a class="btn btn-default" th:href="@{?lang=ru}" th:text="#{lang.ru.label}"></a>
+    <a class="btn btn-default" th:href="@{?lang=en}" th:text="#{lang.en.label}"></a>
+</div>
+
+<h2 class="page-header" th:text="#{users.header}"></h2>
+
+<table style="margin-top: 20px;" class="table">
+    <thead class="thead-dark">
     <tr>
-        <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Role</th>
+        <th th:text="#{user.id}"></th>
+        <th th:text="#{user.first.name}"></th>
+        <th th:text="#{user.last.name}"></th>
+        <th th:text="#{user.email}"></th>
+        <th th:text="#{user.role}"></th>
     </tr>
     </thead>
     <tbody>
     <tr th:if="${users.empty}">
-        <td colspan="2"> No Users Available</td>
+        <td colspan="2" th:text="#{users.empty.message}"></td>
     </tr>
     <tr th:each="user : ${users}">
-        <td><span th:text="${user.getId()}"> Id </span></td>
-        <td><span th:text="${user.getFirstName()}"> First Name </span></td>
-        <td><span th:text="${user.getLastName()}"> Last Name </span></td>
-        <td><span th:text="${user.getEmail()}"> Email </span></td>
-        <td><span th:text="${user.getRole()}"> Role </span></td>
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getFirstName()}"></td>
+        <td th:text="${user.getLastName()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getRole()}"></td>
     </tr>
     </tbody>
 </table>

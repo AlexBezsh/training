@@ -23,7 +23,7 @@ public class LoginController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/login")
+    @PostMapping(value = "/")
     public void login(User user, HttpServletResponse response) throws IOException {
         log.info("User is logging in: {}", user);
         userService.login(user);

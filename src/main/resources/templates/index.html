@@ -11,28 +11,30 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div style="float: right;">
-                <a class="btn btn-default" href="/login?lang=ru" th:text="#{lang.ru.label}"></a>
-                <a class="btn btn-default" href="/login?lang=en" th:text="#{lang.en.label}"></a>
+                <a class="btn btn-default" th:href="@{?lang=ru}" th:text="#{lang.ru.label}"></a>
+                <a class="btn btn-default" th:href="@{?lang=en}" th:text="#{lang.en.label}"></a>
             </div>
             <h2 class="page-header" th:text="#{login.header}"></h2>
-            <form style="margin-bottom: 30px" name="form" autocomplete="off">
+            <form style="margin-bottom: 30px" autocomplete="off" th:action="@{/}" th:object="${user}" method="post">
                 <div class="form-group">
-                    <label for="exampleInputEmail1" th:text="#{login.email.address}"></label>
-                    <input type="email"
+                    <label for="email" th:text="#{user.email}"></label>
+                    <input id="email"
+                           type="email"
                            class="form-control"
-                           id="exampleInputEmail1"
+                           th:field="*{email}"
                            placeholder="Email"
                            required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1" th:text="#{login.password}"></label>
-                    <input type="password"
+                    <label for="password" th:text="#{user.password}"></label>
+                    <input id="password"
+                           type="password"
                            class="form-control"
-                           id="exampleInputPassword1"
+                           th:field="*{password}"
                            placeholder="Password"
                            required>
                 </div>
-                <button type="submit" class="btn btn-default" style="margin-top:30px" th:text="#{login.submit}">
+                <button type="submit" class="btn btn-default" style="margin-top:30px" th:text="#{submit}">
                 </button>
             </form>
         </div>
