@@ -10,6 +10,7 @@ import ua.testing.demo_jpa.service.UserService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashSet;
 
 @Slf4j
 @RestController
@@ -25,10 +26,11 @@ public class RegFormController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/register")
     public void register(User user, HttpServletResponse response) throws IOException {
-        user.setRole(Role.USER);
+        user.setRoles(new HashSet<>());
+        user.getRoles().add(Role.USER);
         log.info("New user {}", user);
         userService.saveNewUser(user);
-        response.sendRedirect("/users");
+        response.sendRedirect("/login");
     }
 
 }

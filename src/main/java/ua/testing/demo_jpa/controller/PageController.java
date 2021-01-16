@@ -20,9 +20,14 @@ public class PageController {
     }
 
     @GetMapping(value="/")
+    public String home(Model model) {
+        return "home";
+    }
+
+    @GetMapping(value="/login")
     public String loginPage(Model model) {
         model.addAttribute("user", new User());
-        return "index";
+        return "login";
     }
 
     @GetMapping(value = "/users")

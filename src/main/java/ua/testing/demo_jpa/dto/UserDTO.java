@@ -4,6 +4,8 @@ import lombok.*;
 import ua.testing.demo_jpa.entity.Role;
 import ua.testing.demo_jpa.entity.User;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,14 +15,14 @@ import ua.testing.demo_jpa.entity.User;
 public class UserDTO {
 
     private Long id;
-    private Role role;
+    private Set<Role> roles;
     private String firstName;
     private String lastName;
     private String email;
 
     public UserDTO(User user) {
         this.id = user.getId();
-        this.role = user.getRole();
+        this.roles = user.getRoles();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
