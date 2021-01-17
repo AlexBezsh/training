@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" th:text="#{navbar.title}"></a>
+        <div style="">
+            <span th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+            <a class="btn btn-default" th:href="${urlBuilder.replaceQueryParam('lang', 'ru').toUriString()}"
+               th:text="#{lang.ru.label}"></a>
+            <a class="btn btn-default" th:href="${urlBuilder.replaceQueryParam('lang', 'en').toUriString()}"
+               th:text="#{lang.en.label}"></a>
+            </span>
+        </div>
+    </nav>
 </html>

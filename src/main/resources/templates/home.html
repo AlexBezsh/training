@@ -7,24 +7,13 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<header th:insert="fragments/bodyHeader.html">
+</header>
 <div class="container" style="margin-top: 60px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div style="float: right;">
-                <a class="btn btn-default" th:href="@{?lang=ru}" th:text="#{lang.ru.label}"></a>
-                <a class="btn btn-default" th:href="@{?lang=en}" th:text="#{lang.en.label}"></a>
-            </div>
-            <h2 class="page-header" th:text="#{home.header}"></h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div style="float: left;">
                 <a class="btn btn-default" th:href="@{/login}" th:text="#{login.button}"></a>
-            </div>
-            <div style="float: right;">
                 <a class="btn btn-default" th:href="@{/register}" th:text="#{registration.button}"></a>
-            </div>
         </div>
     </div>
 </div>

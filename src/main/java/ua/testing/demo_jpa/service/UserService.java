@@ -1,19 +1,15 @@
 package ua.testing.demo_jpa.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.testing.demo_jpa.dto.UserDTO;
 import ua.testing.demo_jpa.entity.User;
 import ua.testing.demo_jpa.exception.DBException;
 import ua.testing.demo_jpa.repository.UserRepository;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -28,15 +24,12 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<UserDTO> getUsers() {
-        List<User> users = userRepository.findAll();
+    public Page<UserDTO> getUsers(Pageable pageable) {
+        Page<User> users = userRepository.findAll(pageable);
         if (users.isEmpty()) {
             throw new DBException("There are no users in database.");
         }
-        return users
-                .stream()
-                .map(UserDTO::new)
-                .collect(Collectors.toList());
+        return users.map(UserDTO::new);
     }
 
     public void login(User user) {
