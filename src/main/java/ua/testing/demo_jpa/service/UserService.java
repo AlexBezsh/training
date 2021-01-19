@@ -25,28 +25,26 @@ public class UserService {
     }
 
     public Page<UserDTO> getUsers(Pageable pageable) {
-        Page<User> users = userRepository.findAll(pageable);
-        if (users.isEmpty()) {
-            throw new DBException("There are no users in database.");
-        }
-        return users.map(UserDTO::new);
+        return userRepository
+                .findAll(pageable)
+                .map(UserDTO::new);
     }
 
     public void login(User user) {
         userRepository.findByEmail(user.getEmail()).ifPresent(u -> {
-            System.out.println("Everything is ok");
             if (!passwordEncoder.matches(u.getPassword(), passwordEncoder.encode(user.getPassword()))) {
-                throw new DBException("Wrong credentials");
+                throw new DBException();
             }
         });
     }
 
     public void saveNewUser(User user) {
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new DBException("User with this email is already registered");
-        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            throw new DBException("Error occurred");
+        }
     }
 
 }

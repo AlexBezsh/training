@@ -7,30 +7,20 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import ua.testing.demo_jpa.entity.User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ua.testing.demo_jpa.service.UserService;
 
 @Slf4j
 @Controller
-public class PageController {
+@RequestMapping(value = "/admin")
+public class AdminController {
 
     private final UserService userService;
 
     @Autowired
-    public PageController(UserService userService) {
+    public AdminController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping(value="/")
-    public String home(Model model) {
-        return "home";
-    }
-
-    @GetMapping(value="/login")
-    public String loginPage(Model model) {
-        model.addAttribute("user", new User());
-        return "login";
     }
 
     @GetMapping(value = "/users")
@@ -39,12 +29,6 @@ public class PageController {
         model.addAttribute("users", userService.getUsers(pageable));
         log.info("page with users was created");
         return "users";
-    }
-
-    @GetMapping("/register")
-    public String regForm(Model model){
-        model.addAttribute("user", new User());
-        return "reg_form";
     }
 
 }
